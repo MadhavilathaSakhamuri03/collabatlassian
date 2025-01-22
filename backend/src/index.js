@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 //const routes = require('./routes/jiraRoute');
+const bitBucketRoutes = require('./routes/bitBucketRoute');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://Madhavilatha:sakhamur
 // Routes
 //app.use('/api', routes);
 app.use('/api/jira', require('./routes/JiraRoute'));
+app.use('/api/bitbucket', bitBucketRoutes);
 
 // Start the server
 app.listen(PORT, () => {
