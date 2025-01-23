@@ -3,7 +3,6 @@ console.log('Hello World');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const routes = require('./routes/jiraRoute');
 const bitBucketRoutes = require('./routes/bitBucketRoute');
 const jsmRoutes = require('./routes/jsmRoute');
 
