@@ -3,8 +3,8 @@ console.log('Hello World');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const routes = require('./routes/jiraRoute');
 const bitBucketRoutes = require('./routes/bitBucketRoute');
+const jsmRoutes = require('./routes/jsmRoute');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +26,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://Madhavilatha:sakhamur
 //app.use('/api', routes);
 app.use('/api/jira', require('./routes/JiraRoute'));
 app.use('/api/bitbucket', bitBucketRoutes);
+app.use('/api/jsm', jsmRoutes);
 
 // Start the server
 app.listen(PORT, () => {
