@@ -17,8 +17,7 @@ const fetchBitBucketPullRequests = async (req, res) => {
       },
     });
 
-    console.log('Pull Requests:', response.data);
-
+   
     // Respond with the pull request data
     res.status(200).json({
       message: 'Pull requests fetched successfully',
