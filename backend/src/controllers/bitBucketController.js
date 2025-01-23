@@ -1,4 +1,5 @@
 const axios = require('axios');
+const BitBucketModel = require('../models/bitBucket');
 
 const fetchBitBucketPullRequests = async (req, res) => {
   const username = 'integrationprojectpoc-admin';
@@ -17,12 +18,33 @@ const fetchBitBucketPullRequests = async (req, res) => {
       },
     });
 
+    const pullrequests = response.data.values;
+
+    if(pullrequests.length != 0) {
+            const jiraIssues = pullrequests
+                             //.filter(issue => issue.fields?.project?.name == 'IntegrationProjectPoc' ) // Filter based on condition
+                             .map((pullrequest) => {
+                
+                return {
+                  prId: pullrequest.id,
+                    title: pullrequest.summary,
+                    prDescription: pullrequest.description,
+                    prstatus: pullrequest.state,
+                    };
+            
+            });
+            console.log(jiraIssues);
+            await BitBucketModel.insertMany(pullrequests);
+    
+        }
    
     // Respond with the pull request data
     res.status(200).json({
       message: 'Pull requests fetched successfully',
       data: response.data,
     });
+
+
   } catch (error) {
     // Improved error handling
     console.error('Error fetching pull requests:', error.response?.data || error.message);
