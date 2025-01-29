@@ -1,10 +1,10 @@
-const express = require('express');
-const { fetchJiraIssues } = require('../controllers/jiraController');
-const router = express.Router();
+// const express = require('express');
+// const { fetchJiraIssues } = require('../services/jiraService');
+// const router = express.Router();
 
-router.get('/', fetchJiraIssues);
+// router.get('/', fetchJiraIssues);
 
 
-module.exports = router;
+// module.exports = router;
 
 

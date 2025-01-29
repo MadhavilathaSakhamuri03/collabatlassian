@@ -1,10 +1,10 @@
-const express = require('express');
-const { fetchBitBucketPullRequests } = require('../controllers/bitBucketController');
-const router = express.Router();
+// const express = require('express');
+// const { fetchBitBucketPullRequests } = require('../services/bitBucketService');
+// const router = express.Router();
 
-router.get('/', fetchBitBucketPullRequests);
+// router.get('/', fetchBitBucketPullRequests);
 
 
-module.exports = router;
+// module.exports = router;
 
 

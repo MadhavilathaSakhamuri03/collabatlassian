@@ -1,5 +1,5 @@
-const JIRAController = require('../controllers/jiraController');
-const BitBucketController = require('../controllers/bitBucketController');
+const JIRAController = require('./jiraService');
+const BitBucketController = require('./bitBucketService');
 
 module.exports = {    getJIRAIssues: JIRAController.fetchJiraIssues,
     getBitBucketPullRequests: BitBucketController.getPRsFromBitBucket};
