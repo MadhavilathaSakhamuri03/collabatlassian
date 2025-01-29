@@ -1,8 +1,8 @@
-const express = require('express');
-const { fetchJSMIssues } = require('../services/jsmService');
-const router = express.Router();
+// const express = require('express');
+// const { jsmData } = require('../services/jsmService');
+// const router = express.Router();
 
-router.get('/', fetchJSMIssues);
+// router.get('/', jsmData);
 
 
-module.exports = router;
+// module.exports = router;

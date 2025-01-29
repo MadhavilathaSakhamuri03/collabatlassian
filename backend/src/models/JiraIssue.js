@@ -4,13 +4,13 @@ const jiraIssueSchema = new mongoose.Schema({
     
     id: String,
     issueId: String,
+    key: String,
     title: String, 
     description: String,
     status: String,
-    type: String,
-    projectName: String
-
-
+    projectName: String,
+    linkedIssues: Array,
+    issueType:String
 
  });
 
