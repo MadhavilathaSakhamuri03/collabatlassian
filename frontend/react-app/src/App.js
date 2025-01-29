@@ -24,7 +24,7 @@ const App = () => {
 
         {/* Footer */}
         <Footer style={{ textAlign: 'center' }}>
-          © 2025 Your Company | Built with React and Ant Design
+         
         </Footer>
       </Layout>
     </Router>
