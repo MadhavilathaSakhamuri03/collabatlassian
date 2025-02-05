@@ -1,0 +1,9 @@
+# pack-refs with: peeled fully-peeled sorted 
+fca9b9cc0ab4a57bb21ab8cfa16d9ee8b5ea088c refs/heads/AT-16-remove-unwanted-code
+372894e788d43534c373a2c039e8cb438476a898 refs/heads/BffChanges
+74cbd5280625b2412b992cb837d9b1a0b8a640da refs/heads/DB-logic-get-changes
+cd678625e933d05fb126db4520c00465439ad0ba refs/heads/feature/SCRUM-3-create-an-api-to-connect-and-get
+bc5a94c43b81aa7b8eba25ecad282d5af9664c8b refs/heads/feature/connect-bitbucket-jira
+7089b232d765ebc5dd116a62a6425dfd0ee0ce57 refs/heads/insert-jira-data
+ec9152dac7351c87758aa894117f0c1d852543ba refs/heads/main
+9625e8a80e35e0c36c29fc1edf5327487ee1cde6 refs/heads/testbranch
