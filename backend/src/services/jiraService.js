@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const fetchJiraIssues = async(req,res) =>{
     
-    const JQL_QUERY = 'key = "IN-3"'; 
     const encodedToken = Buffer.from(`${process.env.EMAIL}:${process.env.API_TOKEN}`).toString('base64');
 
     try {
