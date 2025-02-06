@@ -2,7 +2,6 @@ const JiraData = require('../models/JiraIssue');
 const BitbucketData = require('../models/bitBucket');
 const JsmData = require('../models/jsm');
 
-//const { fetchJiraIssues, fetchBitbucketPRs, fetchJsmRequests } = require('./externalApiService');
 
 const { fetchBitbucketPRs } = require('./bitBucketService');
 const {fetchJiraIssues} = require('./jiraService');
