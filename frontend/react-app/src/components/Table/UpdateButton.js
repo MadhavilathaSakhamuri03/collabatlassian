@@ -1,34 +1,34 @@
 import React from "react";
 import { Button, message } from "antd";
-import { syncData } from "../../api/syncApi";
+import { updateData } from "../../api/updateApi";
 
-const SyncButton = ({ onSync }) => {
-  const handleSync = async () => {
+const UpdateButton = ({ onUpdate }) => {
+  const handleUpdate = async () => {
     try {
-      const response = await syncData();
+      const response = await updateData();
       message.success(response.message);
-      onSync();
+      onUpdate();
     } catch (error) {
-      message.error("Synchronization failed.");
+      message.error("Update failed.");
     }
   };
 
   return (
     <Button
       type="primary"
-      onClick={handleSync}
+      onClick={handleUpdate}
       style={{
         padding: "10px 15px",
         cursor: "pointer",
-        backgroundColor: "blue",
+        backgroundColor: "green",
         border: "none",
         borderRadius: "5px",
         fontSize: "16px",
       }}
     >
-      Sync Data
+      Update Data
     </Button>
   );
 };
 
-export default SyncButton;
+export default UpdateButton;

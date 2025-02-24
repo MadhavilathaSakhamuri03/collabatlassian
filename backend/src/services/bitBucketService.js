@@ -1,6 +1,6 @@
 const axios = require('axios');
 const BitBucketModel = require('../models/bitBucket');
-const fetchBitbucketPRs = async (req, res) => {
+const fetchBitbucketPRs = async (loaderLogstartTime) => {
 require('dotenv').config();
 
   const url = `https://api.bitbucket.org/2.0/repositories/${process.env.workspace}/${process.env.repoSlug}/pullrequests`;
@@ -15,15 +15,24 @@ require('dotenv').config();
     });
     const pullrequests = response.data.values;
 
-    console.log('Pull Requests:', response.data);
 
     if(pullrequests.length != 0) {
       const bitbucketData = pullrequests .map((pullrequest) => ({
-                             prId: pullrequest.id,
-                            title: pullrequest.title,
-                            prDescription: pullrequest.description,
-                            prstatus: pullrequest.state
-          
+                            
+              applicationMetadata: {
+                          workspaceId:"12345",
+                          loadTimestamp:loaderLogstartTime
+                  
+                              },
+              systemMetadata:  {
+                          prId: pullrequest.id,
+                          title: pullrequest.title,
+                          prDescription: pullrequest.description,
+                          prstatus: pullrequest.state
+                                
+                          }
+
+
                             }));
       return bitbucketData;
   }

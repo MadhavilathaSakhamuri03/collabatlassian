@@ -3,7 +3,7 @@ const JiraIssueModel = require('../models/JiraIssue');
 require('dotenv').config();
 
 
-const fetchJiraIssues = async(req,res) =>{
+const fetchJiraIssues = async(loaderLogstartTime) =>{
     
     const encodedToken = Buffer.from(`${process.env.EMAIL}:${process.env.API_TOKEN}`).toString('base64');
 
@@ -26,7 +26,7 @@ const fetchJiraIssues = async(req,res) =>{
           });
         const issues = response.data.issues;
 
-        console.log('jira issues:', response.data);
+        //console.log('jira issues:', response.data.issues);
 
        if(issues.length != 0) {
         const jiraData = issues
@@ -34,23 +34,37 @@ const fetchJiraIssues = async(req,res) =>{
                          .map((issue) => ({
             
             
-                issueId: issue.id,
-                key: issue.key,
-                title: issue.fields.summary,
-                description: issue.body,
-                status: issue.fields?.status?.name,
-                projectName: issue.fields?.project?.name,
-                linkedIssues: issue.fields.issuelinks.map((link) => link.outwardIssue?.key || link.inwardIssue?.key),
-                issueType: issue.fields?.issuetype?.name  
-        
-        }));
+       applicationMetadata: {
+            workspaceId:"12345",
+            loadTimestamp:loaderLogstartTime
+
+                            },
+
+        systemMetadata:  {
+            issueId: issue.id,
+            key: issue.key,
+            title: issue.fields.summary,
+            description: issue.body,
+            status: issue.fields?.status?.name,
+            projectName: issue.fields?.project?.name,
+            linkedIssues: issue.fields.issuelinks.map((link) => link.outwardIssue?.key || link.inwardIssue?.key),
+            issueType: issue.fields?.issuetype?.name ,
+            issueData :issue.fields?.issuetype  ,
+            sprintData : issue.fields?.customfield_10020,
+            assigneeData : issue.fields?.assignee,
+            statusData : issue.fields?.status?.statusCategory,
+            subtaskDetails : issue.fields?.subtasks,
+             }
+       
+       
+            }));
         return jiraData;
-        //await JiraIssueModel.insertMany(jiraIssues);
 
     }
-        //res.status(200).json({message: 'Issues fetched successfully'});
+        
     } catch (error) {
-        res.status(500).json({message: error.message});
+        console.log('Error fetching Jira issues:', error.response?.data || error)
+        throw error;
     }
 }
 module.exports = { fetchJiraIssues }

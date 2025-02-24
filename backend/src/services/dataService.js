@@ -1,6 +1,7 @@
 const JiraData = require('../models/JiraIssue');
 const BitbucketData = require('../models/bitBucket');
 const JsmData = require('../models/jsm');
+const LoaderLogs = require('../models/loaderLogs');
 
 
 const { fetchBitbucketPRs } = require('./bitBucketService');
@@ -9,24 +10,36 @@ const { fetchJsmRequests } = require('./jsmService');
 
 const fetchAndSaveData = async () => {
   try {
+    // Save loaderLogs data
+    const loaderLogstartTime = Math.floor(Date.now() / 1000);
+    const loaderLogs = new LoaderLogs({loaderStartDate:loaderLogstartTime});
+//await LoaderLogs.insertMany(loaderLogs);
+
+
+
     // Fetch data from APIs
     const [jiraData, bitbucketData, jsmData] = await Promise.all([
-        fetchJiraIssues(),
-      fetchBitbucketPRs(),
+        fetchJiraIssues(loaderLogstartTime),
+      fetchBitbucketPRs(loaderLogstartTime),
       fetchJsmRequests(),
     ]);
 
     // Save Jira data
-    await JiraData.deleteMany();
+   
     await JiraData.insertMany(jiraData);
 
     // Save Bitbucket data
-    await BitbucketData.deleteMany();
+ 
     await BitbucketData.insertMany(bitbucketData);
 
     // Save JSM data
-    await JsmData.deleteMany();
+  
     await JsmData.insertMany(jsmData);
+
+
+    loaderLogs.loaderEndDate = Math.floor(Date.now() / 1000);
+    await LoaderLogs.insertMany(loaderLogs);
+
 
     return { success: true };
   } catch (error) {

@@ -33,6 +33,10 @@ app.use(cors());
 //app.use('/api/jira', require('./controller/bffRoute'));
 
 app.use('/api', require('./controller/bffRoute'));
+//app.use('/api', require('./controller/bffRoute'));
+app.use('/api/update-date', require('./controller/bffRoute'));
+
+
 console.log('API routes mounted at /api');
 
 app.get('/', (req, res) => {

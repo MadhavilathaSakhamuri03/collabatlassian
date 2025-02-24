@@ -108,7 +108,7 @@ const DataTable = ({ data, loading }) => {
         onChange={handleSearch}
         style={{ marginBottom: 10, width: 200 ,pull: 'right'}}
       />
-      <Table columns={columns} dataSource={filteredData} loading={loading} />
+      <Table columns={columns} ataSource={filteredData} loading={loading} />
     </div>
   );
 };
