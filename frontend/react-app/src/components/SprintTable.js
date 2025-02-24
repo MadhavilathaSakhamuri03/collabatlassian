@@ -30,7 +30,7 @@ const SprintTable = () => {
   }, [location.pathname]); // ✅ Fetch data when route changes
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: "red" }}>Error: {error.message}</p>;
+  if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   const columns = [
     { title: "Sprint Name", dataIndex: "sprintName", key: "sprintName" },
@@ -53,15 +53,7 @@ const SprintTable = () => {
       render: (text, record) => (
         <button
           onClick={() => navigate(`/issues?sprintId=${record.sprintId}`)}
-          style={{
-            background: "none",
-            border: "none",
-            color: "blue",
-            textDecoration: "underline",
-            cursor: "pointer",
-            padding: 0,
-            fontSize: "inherit",
-          }}
+          className="bg-none border-none text-blue-500 underline cursor-pointer p-0 "
         >
           {text}
         </button>
@@ -80,15 +72,7 @@ const SprintTable = () => {
         return (
           <button
             onClick={() => navigate(`/bugs?sprintId=${record.sprintId}`)}
-            style={{
-              background: "none",
-              border: "none",
-              color: "blue",
-              textDecoration: "underline",
-              cursor: "pointer",
-              padding: 0,
-              fontSize: "inherit",
-            }}
+            className="bg-none border-none text-blue-500 underline cursor-pointer p-0 "
           >
             {text}
           </button>

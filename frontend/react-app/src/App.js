@@ -15,26 +15,26 @@ const App = () => {
     <Router>
       <Layout className="min-h-screen">
         
-        <Header style={{ color: "white", fontSize: "20px", textAlign: "center" }}>
+        <Header className="text-white text-[20px] text-center"        >
           JIRA, Bitbucket, JSM Dashboard
         </Header>
         
         <Layout>
           
-          <Sider width={256} style={{ background: "#f0f2f5" }}>
+          <Sider width={256} className="bg-[#f0f2f5]">
             <MenuItems setSelectedView={setSelectedView} />
           </Sider>
 
          
-          <Layout style={{ padding: "20px" }}>
-            <Content style={{ background: "#fff", padding: "20px", borderRadius: "10px" }}>
+          <Layout className="p-[20px]" >
+            <Content className="bg-white p-[20px] rounded-[10px]" >
               <AppRoutes /> 
             </Content>
           </Layout>
         </Layout>
 
         {/* Footer */}
-        <Footer style={{ textAlign: "center" }}></Footer>
+        <Footer className="text-center"></Footer>
       </Layout>
     </Router>
   );
