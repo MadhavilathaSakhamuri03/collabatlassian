@@ -25,11 +25,12 @@ const App = () => {
             <MenuItems setSelectedView={setSelectedView} />
           </Sider>
 
-         
+          {/* <h1>{selectedView}</h1> */}
           <Layout className="p-[20px]" >
             <Content className="bg-white p-[20px] rounded-[10px]" >
               <AppRoutes /> 
             </Content>
+            
           </Layout>
         </Layout>
 

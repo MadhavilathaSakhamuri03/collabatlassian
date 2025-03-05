@@ -107,7 +107,9 @@ const getIssueSummary = (jiraData, filterByIssueType = null) => {
                     assignee: issueData.assigneeData?.displayName,
                     issueKey: issueData.key,
                     sprintName: sprintData?.name || "Backlog",
-                    sprintId : sprintData?.id
+                    sprintId : sprintData?.id,
+                    subtaskDetails : issueData.subtaskDetails,
+
                 };
             }
             return null; // Skip if not matching the filter

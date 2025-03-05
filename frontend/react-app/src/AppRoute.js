@@ -10,8 +10,8 @@ const AppRoutes = () => {
       <Route path="/" element={<Navigate to="/sprint" />} /> 
       <Route path="/dashboard" element={<Dashboard />} /> 
       <Route path="/sprint" element={<SprintTable />} /> 
-      <Route path="/issues" element={<IssuesTable selectedView="issues" />} /> 
-      <Route path="/bugs" element={<IssuesTable selectedView="bugs" />} /> 
+      <Route path="/issues" element={<IssuesTable selectedView="issues" title="All Issues"/>} /> 
+      <Route path="/bugs" element={<IssuesTable selectedView="bugs"  title="Bug Issues"/>} /> 
     </Routes>
   );
 };

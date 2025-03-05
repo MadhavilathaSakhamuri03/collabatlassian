@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
 import { CalendarOutlined, MailOutlined, BugOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const menuItems = [
   { key: "sprint", icon: <CalendarOutlined />, label: "Sprint" },
@@ -10,12 +10,27 @@ const menuItems = [
 ];
 
 const MenuItems = ({ setSelectedView }) => {
-  const [selectedKey, setSelectedKey] = useState("sprint");
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedKey, setSelectedKey] = useState("sprint");
+
+  // Update selectedKey based on the current URL
+  useEffect(() => {
+    if (location.pathname.includes("issues")) {
+      setSelectedKey("issues");
+      setSelectedView("issues");
+    } else if (location.pathname.includes("bugs")) {
+      setSelectedKey("bugs");
+      setSelectedView("bugs");
+    } else if (location.pathname.includes("sprint")) {
+      setSelectedKey("sprint");
+      setSelectedView("sprint");
+    }
+  }, [location.pathname, setSelectedView]);
 
   const onMenuClick = (e) => {
     setSelectedKey(e.key);
-    setSelectedView(e.key); // ✅ Update parent state to track selected menu
+    setSelectedView(e.key); 
 
     if (e.key === "sprint") {
       navigate("/sprint");
@@ -28,8 +43,8 @@ const MenuItems = ({ setSelectedView }) => {
 
   return (
     <Menu
-      style={{ width: 256 }}
-      selectedKeys={[setSelectedKey]}
+      className="w-64"
+      selectedKeys={[selectedKey]} 
       onClick={onMenuClick}
       items={menuItems}
     />
